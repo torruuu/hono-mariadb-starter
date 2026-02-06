@@ -1,7 +1,10 @@
 import { httpError } from '@/core/errors/http-error-handler.js'
+import type {
+  GetAllProductsRoute,
+  GetProductByIdRoute,
+} from '@/features/product/product.routes.js'
+import * as productService from '@/features/product/product.service.js'
 import type { RouteHandler } from '@hono/zod-openapi'
-import type { GetAllProductsRoute, GetProductByIdRoute } from './product.routes.js'
-import * as productService from './product.service.js'
 
 export const getAllProducts: RouteHandler<GetAllProductsRoute> = (c) => {
   const products = productService.getAllProducts()

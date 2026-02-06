@@ -1,6 +1,6 @@
+import * as controllers from '@/features/product/product.controller.js'
+import * as routes from '@/features/product/product.routes.js'
 import { OpenAPIHono } from '@hono/zod-openapi'
-import * as controllers from './product.controller.js'
-import * as routes from './product.routes.js'
 
 const router = new OpenAPIHono()
   .openapi(routes.getAllProductsRoute, controllers.getAllProducts)
