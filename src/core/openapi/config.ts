@@ -20,6 +20,9 @@ export default function defineOpenAPI(app: OpenAPIHono) {
         targetKey: 'js',
         clientKey: 'fetch',
       },
+      agent: {
+        disabled: true,
+      },
     }),
   )
 }
