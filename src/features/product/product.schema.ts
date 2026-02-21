@@ -1,10 +1,11 @@
+import { zDecimal } from '@/shared/utils/validators'
 import { z } from 'zod'
 
 export const ProductSchema = z.object({
-  id: z.string(),
+  id: z.number(),
   name: z.string(),
   description: z.string(),
-  price: z.number(),
+  price: zDecimal(),
   stock: z.number(),
   category: z.string(),
 })
@@ -12,5 +13,5 @@ export const ProductSchema = z.object({
 export const ProductListSchema = z.array(ProductSchema)
 
 export const ProductIdParamSchema = z.object({
-  id: z.string(),
+  id: z.int(),
 })

@@ -6,14 +6,14 @@ import type {
 import * as productService from '@/features/product/product.service.js'
 import type { RouteHandler } from '@hono/zod-openapi'
 
-export const getAllProducts: RouteHandler<GetAllProductsRoute> = (c) => {
-  const products = productService.getAllProducts()
+export const getAllProducts: RouteHandler<GetAllProductsRoute> = async (c) => {
+  const products = await productService.getAllProducts()
   return c.json(products, 200)
 }
 
-export const getProductById: RouteHandler<GetProductByIdRoute> = (c) => {
+export const getProductById: RouteHandler<GetProductByIdRoute> = async (c) => {
   const { id } = c.req.valid('param')
-  const product = productService.getProductById(id)
+  const product = await productService.getProductById(id)
 
   if (!product) {
     return httpError(c, 'not_found')
