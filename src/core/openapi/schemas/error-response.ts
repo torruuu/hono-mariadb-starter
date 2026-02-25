@@ -1,23 +1,20 @@
 import { APP_ERRORS, type AppErrorCode } from '@/core/errors/app-errors.js'
+import zodIssuesFormatter, {
+  type FormattedZodIssue,
+} from '@/core/errors/zod-issues-formatter.js'
 import { z } from '@hono/zod-openapi'
 
 const ZodIssueSchema = z.object({
   code: z.string(),
   path: z.array(z.union([z.string(), z.number()])),
-  message: z.string().optional(),
+  message: z.string(),
 })
 
-type IssueExample = z.infer<typeof ZodIssueSchema>
-
-function generateIssuesExample(schema: z.ZodType): IssueExample[] {
+function generateIssuesExample(schema: z.ZodType): FormattedZodIssue[] {
   const { error } = schema.safeParse({})
 
   if (error) {
-    return error.issues.map((issue) => ({
-      code: issue.code,
-      path: issue.path.filter((p): p is string | number => typeof p !== 'symbol'),
-      message: issue.message,
-    }))
+    return zodIssuesFormatter(error.issues)
   }
 
   return [

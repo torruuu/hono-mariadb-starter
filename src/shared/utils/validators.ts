@@ -16,6 +16,7 @@ export const zDecimal = () =>
       { message: 'Invalid decimal value' },
     )
     .transform((val) => new Decimal(val))
+    .openapi({ description: 'Decimal number format' })
 
 export const zIntParam = () =>
   z.preprocess(

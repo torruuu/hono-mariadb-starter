@@ -2,6 +2,7 @@ import * as HttpStatusCodes from '@/constants/http-status-codes.js'
 import jsonContent from '@/core/openapi/helpers/json-content.js'
 import { openApiErrorResponse } from '@/core/openapi/schemas/error-response.js'
 import {
+  CreateProductSchema,
   ProductIdParamSchema,
   ProductListSchema,
   ProductSchema,
@@ -42,5 +43,29 @@ export const getProductByIdRoute = createRoute({
   },
 })
 
+export const createProductRoute = createRoute({
+  method: 'post',
+  path: '/',
+  tags,
+  summary: 'Create a product',
+  description: 'Create a new product',
+  request: {
+    body: jsonContent(CreateProductSchema, {
+      description: 'Product data',
+      required: true,
+    }),
+  },
+  responses: {
+    [HttpStatusCodes.CREATED]: jsonContent(ProductSchema, {
+      description: 'Product created',
+    }),
+    [HttpStatusCodes.UNPROCESSABLE_ENTITY]: jsonContent(
+      openApiErrorResponse('validation_error', CreateProductSchema),
+      { description: 'Validation error' },
+    ),
+  },
+})
+
 export type GetAllProductsRoute = typeof getAllProductsRoute
 export type GetProductByIdRoute = typeof getProductByIdRoute
+export type CreateProductRoute = typeof createProductRoute

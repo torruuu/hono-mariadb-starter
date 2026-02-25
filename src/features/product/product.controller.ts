@@ -1,5 +1,6 @@
 import { httpError } from '@/core/errors/http-error-handler.js'
 import type {
+  CreateProductRoute,
   GetAllProductsRoute,
   GetProductByIdRoute,
 } from '@/features/product/product.routes.js'
@@ -20,4 +21,10 @@ export const getProductById: RouteHandler<GetProductByIdRoute> = async (c) => {
   }
 
   return c.json(product, 200)
+}
+
+export const createProduct: RouteHandler<CreateProductRoute> = async (c) => {
+  const body = c.req.valid('json')
+  const product = await productService.createProduct(body)
+  return c.json(product, 201)
 }

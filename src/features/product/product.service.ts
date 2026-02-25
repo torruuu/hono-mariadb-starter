@@ -1,4 +1,4 @@
-import type { Product } from '@/features/product/product.types.js'
+import type { CreateProduct, Product } from '@/features/product/product.types.js'
 import { prisma } from '@/integrations/database/config'
 
 export function getAllProducts(): Promise<Product[]> {
@@ -7,4 +7,8 @@ export function getAllProducts(): Promise<Product[]> {
 
 export function getProductById(id: number): Promise<Product | null> {
   return prisma.product.findUnique({ where: { id } })
+}
+
+export function createProduct(data: CreateProduct): Promise<Product> {
+  return prisma.product.create({ data })
 }
