@@ -1,5 +1,5 @@
 import pinoLogger from '@/core/logging/pino-logger.js'
-import defaultHook from '@/core/openapi/default-hook'
+import defaultHook from '@/core/openapi/default-hook.js'
 import notFound from '@/shared/middlewares/not-found.js'
 import onError from '@/shared/middlewares/on-error.js'
 import { OpenAPIHono } from '@hono/zod-openapi'

@@ -1,4 +1,4 @@
-import { createRouter } from '@/core/factories/create-app'
+import { createRouter } from '@/core/factories/create-app.js'
 import * as controllers from '@/features/product/product.controller.js'
 import * as routes from '@/features/product/product.routes.js'
 

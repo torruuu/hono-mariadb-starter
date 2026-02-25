@@ -1,4 +1,4 @@
-import { Decimal } from '@prisma/client/runtime/client'
+import { Decimal } from '@prisma/client/runtime/client.js'
 import { z } from 'zod'
 
 export const zDecimal = () =>

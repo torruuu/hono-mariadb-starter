@@ -1,4 +1,4 @@
-import { zDecimal, zIntParam } from '@/shared/utils/validators'
+import { zDecimal, zIntParam } from '@/shared/utils/validators.js'
 import { z } from 'zod'
 
 export const ProductSchema = z.object({
