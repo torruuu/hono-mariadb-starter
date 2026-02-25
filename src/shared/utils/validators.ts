@@ -16,3 +16,9 @@ export const zDecimal = () =>
       { message: 'Invalid decimal value' },
     )
     .transform((val) => new Decimal(val))
+
+export const zIntParam = () =>
+  z.preprocess(
+    (value) => (value == null || value === '' ? undefined : Number(value)),
+    z.number().int(),
+  )

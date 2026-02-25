@@ -1,4 +1,3 @@
-import type { ProductSchema } from '@/features/product/product.schema.js'
-import type { z } from 'zod'
+import type { Product as PrismaProduct } from '@/core/db/generated/prisma/client.js'
 
-export type Product = z.infer<typeof ProductSchema>
+export type Product = PrismaProduct
