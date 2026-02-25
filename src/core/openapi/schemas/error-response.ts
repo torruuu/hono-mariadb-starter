@@ -5,7 +5,19 @@ import zodIssuesFormatter, {
 import { z } from '@hono/zod-openapi'
 
 const ZodIssueSchema = z.object({
-  code: z.string(),
+  code: z.enum([
+    'custom',
+    'invalid_type',
+    'unrecognized_keys',
+    'invalid_union',
+    'too_big',
+    'too_small',
+    'invalid_format',
+    'not_multiple_of',
+    'invalid_key',
+    'invalid_element',
+    'invalid_value',
+  ]),
   path: z.array(z.union([z.string(), z.number()])),
   message: z.string(),
 })
